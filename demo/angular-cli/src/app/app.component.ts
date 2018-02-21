@@ -39,6 +39,8 @@ export class AppComponent {
 
   openModalWindow: boolean = false;
   imagePointer: number = 0;
+  selectedCount: number = 0;
+  totalCount: number = 3;
 
   openModalWindowObservable: boolean = false;
   imagePointerObservable: number = 0;
@@ -46,33 +48,42 @@ export class AppComponent {
   imagesArray: Array<Image> = [
     new Image(
       '../assets/images/gallery/img1.jpg',
+      1,
+      1,
+      'a',
+      'a.jpg',
+      100,
+      100,
+      true,
       null, // no thumb
       null, // no description
       'http://www.google.com'
     ),
     new Image(
       '../assets/images/gallery/img2.png', // example with a PNG image
+      2,
+      1,
+      'b',
+      'b.jpg',
+      100,
+      100,
+      false,
       null, // no thumb
       'Description 2',
       null // url
     ),
     new Image(
       '../assets/images/gallery/img3.jpg',
+      3,
+      1,
+      'c',
+      'c.jpg',
+      100,
+      100,
+      false,
       '../assets/images/gallery/thumbs/img3.png', // example with a PNG thumb image
       'Description 3',
       'http://www.google.com'
-    ),
-    new Image(
-      '../assets/images/gallery/img4.jpg',
-      null, // no thumb
-      'Description 4',
-      'http://www.google.com'
-    ),
-    new Image(
-      '../assets/images/gallery/img5.jpg',
-      '../assets/images/gallery/thumbs/img5.jpg',
-      null, // no description
-      null // url
     )
   ];
 
@@ -83,6 +94,13 @@ export class AppComponent {
   singleImage: Observable<Array<Image>> = Observable.of([
     new Image(
       '../assets/images/gallery/img1.jpg',
+      1,
+      1,
+      'a',
+      'a.jpg',
+      100,
+      100,
+      false,
       '../assets/images/gallery/thumbs/img1.jpg',
       'Description 1',
       'http://www.google.com'
@@ -137,6 +155,32 @@ export class AppComponent {
     console.log('onImageLoaded result:' + event.result);
   }
 
+
+
+
+
+  onSelectionChanged(image: Image){
+    console.log("Selection changed fired app");
+    console.log(image);
+    console.log('Call server to update image id : ' + image.id);
+    this.totalCount = this.imagesArray.length;
+    this.selectedCount = this.imagesArray.filter((img) => {return img.selected === true}).length;
+    console.log(this.selectedCount);
+  }
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   onVisibleIndex(event: ImageModalEvent) {
     this.customFullDescription.customFullDescription = `Custom description of visible image with index= ${event.result}`;
     console.log('action: ' + Action[event.action]);

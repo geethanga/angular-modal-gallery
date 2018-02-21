@@ -19,6 +19,7 @@
                  [downloadable]="false"
                  [slideConfig]="{infinite: false}"
                  (hasData)="onImageLoaded($event)"
+                 (selectChanged)="onSelectionChanged($event)"
                  (close)="onCloseImageModal($event)"
                  (show)="onVisibleIndex($event)"
                  (firstImage)="onIsFirstImage($event)"

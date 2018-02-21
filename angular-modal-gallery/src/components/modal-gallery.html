@@ -11,7 +11,7 @@
       </div>
 
       <upperButtons [image]="currentImage" [configButtons]="configButtons"
-                    (close)="closeGallery()" (download)="downloadImage()"></upperButtons>
+                    (close)="closeGallery()" (download)="downloadImage()" (imageSelectionChanged)="imageSelectionChangedComponent($event)"></upperButtons>
 
       <a class="nav-left" *ngIf="images?.length > 1"
          [hidden]="isFirstImage"

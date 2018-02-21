@@ -62,16 +62,38 @@ export class ImageModalEvent {
  */
 export class Image {
   img: string;
+  id: number;
+  companyId: number;
+  fileId: string;
+  fileName: string;
+  width: number;
+  height: number;
+  selected: boolean | false;
   thumb?: string | null | undefined;
   description?: string | null | undefined;
   extUrl?: string | null | undefined;
 
-  constructor(img: string, thumb?: string | null | undefined,
+  constructor(img: string,
+              id: number,
+              companyId: number,
+              fileId: string,
+              fileName: string,
+              width: number,
+              height: number,
+              selected: boolean | false,
+              thumb?: string | null | undefined,
               description?: string | null | undefined, extUrl?: string | null | undefined) {
     this.img = img;
+    this.id = id;
+    this.companyId = companyId;
+    this.fileId = fileId;
+    this.fileName = fileName;
+    this.width = width;
+    this.height = height;
     this.thumb = thumb;
     this.description = description;
     this.extUrl = extUrl;
+    this.selected = selected;
   }
 }
 
@@ -188,7 +210,7 @@ export class AngularModalGalleryComponent implements OnInit, OnDestroy, OnChange
   @Output() firstImage: EventEmitter<ImageModalEvent> = new EventEmitter<ImageModalEvent>();
   @Output() lastImage: EventEmitter<ImageModalEvent> = new EventEmitter<ImageModalEvent>();
   @Output() hasData: EventEmitter<ImageModalEvent> = new EventEmitter<ImageModalEvent>();
-
+  @Output() selectChanged: EventEmitter<Image> = new EventEmitter<Image>();
   /**
    * Boolean that it is true if the modal gallery is visible
    */
@@ -381,6 +403,12 @@ export class AngularModalGalleryComponent implements OnInit, OnDestroy, OnChange
     this.keyboardService.reset();
   }
 
+  imageSelectionChangedComponent(image: any){
+    console.log("select change component");
+    console.log(image);
+    this.selectChanged.emit(image);
+  }
+
   /**
    * Method `prevImage` to go back to the previous image shown into the modal gallery.
    * @param action Enum of type `Action` that represents the source
@@ -566,6 +594,7 @@ export class AngularModalGalleryComponent implements OnInit, OnDestroy, OnChange
    *  Use this parameter to prevent multiple `hasData` events.
    */
   private initImages(emitHasDataEvent: boolean = false) {
+    console.log(this.modalImages);
     if (this.modalImages instanceof Array) {
       this.images = <Array<Image>>this.modalImages;
       this.completeInitialization(emitHasDataEvent);

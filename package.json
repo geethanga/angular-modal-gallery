@@ -9,7 +9,7 @@
     "node": ">=8.0.0",
     "npm": ">=5.0.0"
   },
-  "homepage": "https://github.com/Ks89/angular-modal-gallery#readme",
+  "homepage": "https://github.com/geethanga/angular-modal-gallery#readme",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",

@@ -1,10 +1,10 @@
 {
-  "name": "angular-modal-gallery",
-  "version": "4.0.1",
+  "name": "angular-modal-gallery-hbs",
+  "version": "5.0.0",
   "description": "Modal image gallery for Angular >=4",
   "main": "src/public_api.ts",
   "license": "MIT",
-  "author": "Stefano Cappa",
+  "author": "Geethanga Amarasinghe",
   "engines": {
     "node": ">=8.0.0",
     "npm": ">=5.0.0"
@@ -19,41 +19,14 @@
     "rxjs": ">=5.0.0"
   },
   "keywords": [
-    "angular-modal-gallery",
-    "angular2-gallery",
-    "angular2-modal-gallery",
-    "angular2-modal",
-    "modal-gallery",
-    "angular 2",
-    "angular 4",
-    "angular4-modal-gallery",
-    "angular4-modal",
-    "angular 5",
-    "angular5-modal-gallery",
-    "angular5-modal",
-    "ngx-modal-gallery",
-    "ngx-gallery",
-    "popup",
-    "gallery",
-    "modal",
-    "angular2-modal-popup",
-    "angular4-modal-popup",
-    "angular5-modal-popup",
-    "angular5-modal",
-    "angular2-modal",
-    "angular4-modal",
-    "modal-popup",
-    "swipe",
-    "gesture",
-    "touch",
-    "mobile"
+    "angular-modal-gallery-hbs"
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/Ks89/angular-modal-gallery.git"
+    "url": "https://github.com/geethanga/angular-modal-gallery.git"
   },
   "bugs": {
-    "url": "https://github.com/Ks89/angular-modal-gallery/issues"
+    "url": "https://github.com/geethanga/angular-modal-gallery/issues"
   },
   "greenkeeper": {
     "ignore": [

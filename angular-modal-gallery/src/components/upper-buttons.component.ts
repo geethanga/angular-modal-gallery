@@ -44,6 +44,7 @@ export class UpperButtonsComponent {
 
   @Output() close: EventEmitter<boolean> = new EventEmitter<boolean>();
   @Output() download: EventEmitter<boolean> = new EventEmitter<boolean>();
+  @Output() imageSelectionChanged: EventEmitter<Image> = new EventEmitter<Image>();
 
   downloadImage() {
     this.download.emit(true);
@@ -51,5 +52,10 @@ export class UpperButtonsComponent {
 
   closeGallery() {
     this.close.emit(true);
+  }
+
+  onSelectChanged(value:boolean, image: any){
+    this.image.selected = value;
+    this.imageSelectionChanged.emit(this.image)
   }
 }
