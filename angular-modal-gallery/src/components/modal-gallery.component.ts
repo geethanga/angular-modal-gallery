@@ -29,7 +29,7 @@ import { Subscription } from 'rxjs/Subscription';
 
 import { KeyboardService } from '../services/keyboard.service';
 
-import { ButtonsConfig } from '../interfaces/buttons-config.interface';
+import { ButtonsConfig, SelectionInfo } from '../interfaces/buttons-config.interface';
 
 /**
  * Enum `Action` with a list of possible actions.
@@ -159,6 +159,9 @@ export class AngularModalGalleryComponent implements OnInit, OnDestroy, OnChange
    * thumbs and the modal gallery.
    */
   @Input() modalImages: Observable<Array<Image>> | Array<Image>;
+
+  @Input() selectionLimit: number = 100;
+
   /**
    * Number to open the modal gallery (passing a value >=0) showing the image with the
    * imagePointer's index.
@@ -179,6 +182,9 @@ export class AngularModalGalleryComponent implements OnInit, OnDestroy, OnChange
    * Object of type `ButtonsConfig` to show/hide buttons.
    * This is used only inside `ngOnInit()` to create `configButtons`
    */
+
+  @Input() selectionInfo: SelectionInfo;
+
   @Input() buttonsConfig: ButtonsConfig;
   /**
    * Object of type `KeyboardConfig` to assign custom keys to ESC, RIGHT and LEFT keyboard's actions.
@@ -211,6 +217,8 @@ export class AngularModalGalleryComponent implements OnInit, OnDestroy, OnChange
   @Output() lastImage: EventEmitter<ImageModalEvent> = new EventEmitter<ImageModalEvent>();
   @Output() hasData: EventEmitter<ImageModalEvent> = new EventEmitter<ImageModalEvent>();
   @Output() selectChanged: EventEmitter<Image> = new EventEmitter<Image>();
+  
+  selectedImageCount: number = 0;
   /**
    * Boolean that it is true if the modal gallery is visible
    */
@@ -253,6 +261,16 @@ export class AngularModalGalleryComponent implements OnInit, OnDestroy, OnChange
    * Boolean that it's true when you are watching the last image (currently visible).
    */
   isLastImage: boolean = false;
+
+
+  /**
+   * Paging related variables
+   */
+  totalImageCount: number = 0;
+  pageSize: number = 20;
+  pageCount: number = 0;
+  currentPage: number = 0;
+
 
   /**
    * Private SWIPE_ACTION to define all swipe actions used by hammerjs.
@@ -321,6 +339,17 @@ export class AngularModalGalleryComponent implements OnInit, OnDestroy, OnChange
   }
 
   /**
+   * This method will initialize the pager when the images are loaded.
+   */
+  initializePager(){
+    if (this.images.length > 0){
+      this.totalImageCount = this.images.length;
+      this.pageCount = this.totalImageCount / this.pageSize;
+      this.currentPage = 1;
+    }
+  }
+
+  /**
    * Method ´ngOnInit´ to build `configButtons` and to call `initImages()`.
    * This is an Angular's lifecycle hook, so its called automatically by Angular itself.
    * In particular, it's called only one time!!!
@@ -354,13 +383,21 @@ export class AngularModalGalleryComponent implements OnInit, OnDestroy, OnChange
     }
   }
 
+  getImageCountsToDisplay(){
+    var selectedImages = this.images.filter(image=>{
+      return image.selected === true;
+    });
+    var selectedImageCount = selectedImages.length;
+    var tobeselected = this.selectionLimit - selectedImageCount;
+    return "You need to select " + tobeselected + " images."
+  }
   /**
    * Method `getDescriptionToDisplay` to get the image description based on input params.
    * If you provide a full description this will be the visible description, otherwise,
    * it will be built using the `description` object, concatenating its fields.
    * @returns String description to display.
    */
-  getDescriptionToDisplay() {
+  getDescriptionToDisplay() {            
     if (this.description && this.description.customFullDescription) {
       return this.description.customFullDescription;
     }
@@ -404,8 +441,7 @@ export class AngularModalGalleryComponent implements OnInit, OnDestroy, OnChange
   }
 
   imageSelectionChangedComponent(image: any){
-    console.log("select change component");
-    console.log(image);
+
     this.selectChanged.emit(image);
   }
 
@@ -594,14 +630,15 @@ export class AngularModalGalleryComponent implements OnInit, OnDestroy, OnChange
    *  Use this parameter to prevent multiple `hasData` events.
    */
   private initImages(emitHasDataEvent: boolean = false) {
-    console.log(this.modalImages);
     if (this.modalImages instanceof Array) {
       this.images = <Array<Image>>this.modalImages;
+      this.initializePager();
       this.completeInitialization(emitHasDataEvent);
     } else {
       if (this.modalImages instanceof Observable) {
         this.subscription = (<Observable<Array<Image>>>this.modalImages).subscribe((val: Array<Image>) => {
           this.images = val;
+          this.initializePager();
           this.completeInitialization(emitHasDataEvent);
         });
       }

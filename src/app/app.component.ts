@@ -45,35 +45,44 @@ export class AppComponent implements OnInit, OnDestroy {
 
   imagesArray: Array<Image> = [
     new Image(
-      '../assets/images/gallery/img1.jpg',
+      '../assets/images/gallery/img2.jpg',
+      1,
+      1,
+      'b',
+      'b.jpg',
+      100,
+      100,
+      true,
       null, // no thumb
       null, // no description
       'http://www.google.com'
     ),
     new Image(
-      '../assets/images/gallery/img2.png', // example with a PNG image
+      '../assets/images/gallery/img2.jpg',
+      1,
+      1,
+      'a',
+      'a.jpg',
+      100,
+      100,
+      true,
       null, // no thumb
-      'Description 2',
-      null // url
+      null, // no description
+      'http://www.google.com'
     ),
     new Image(
       '../assets/images/gallery/img3.jpg',
-      '../assets/images/gallery/thumbs/img3.png', // example with a PNG thumb image
-      'Description 3',
-      'http://www.google.com'
-    ),
-    new Image(
-      '../assets/images/gallery/img4.jpg',
+      1,
+      1,
+      'c',
+      'c.jpg',
+      100,
+      100,
+      true,
       null, // no thumb
-      'Description 4',
+      null, // no description
       'http://www.google.com'
     ),
-    new Image(
-      '../assets/images/gallery/img5.jpg',
-      '../assets/images/gallery/thumbs/img5.jpg',
-      null, // no description
-      null // url
-    )
   ];
 
   // observable of an array of images with a delay to simulate a network request
@@ -83,10 +92,17 @@ export class AppComponent implements OnInit, OnDestroy {
   singleImage: Observable<Array<Image>> = Observable.of([
     new Image(
       '../assets/images/gallery/img1.jpg',
-      '../assets/images/gallery/thumbs/img1.jpg',
-      'Description 1',
+      1,
+      1,
+      'a',
+      'a.jpg',
+      100,
+      100,
+      true,
+      null, // no thumb
+      null, // no description
       'http://www.google.com'
-    )]
+    ),]
   );
 
   // array of images initialized inside the onNgInit() of this component

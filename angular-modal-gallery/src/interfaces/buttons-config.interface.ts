@@ -6,3 +6,8 @@ export interface ButtonsConfig {
   extUrl?: boolean;
   close?: boolean;
 }
+
+export interface SelectionInfo {
+  total: number;
+  selectedCount: number;
+}

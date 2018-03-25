@@ -25,7 +25,7 @@
 import { Input, Output, EventEmitter, Component } from '@angular/core';
 import { Image } from './modal-gallery.component';
 
-import { ButtonsConfig } from '../interfaces/buttons-config.interface';
+import { ButtonsConfig, SelectionInfo } from '../interfaces/buttons-config.interface';
 
 /**
  * Component with all upper right buttons.
@@ -41,6 +41,7 @@ export class UpperButtonsComponent {
 
   @Input() image: Image;
   @Input() configButtons: ButtonsConfig;
+  @Input() selectionInfo: SelectionInfo;
 
   @Output() close: EventEmitter<boolean> = new EventEmitter<boolean>();
   @Output() download: EventEmitter<boolean> = new EventEmitter<boolean>();

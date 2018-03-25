@@ -16,6 +16,8 @@
   </ul>
   <br>
   <modal-gallery [modalImages]="images"
+                 [selectionInfo]="selectionInfo"
+                 [selectionLimit]="50"
                  [downloadable]="false"
                  [slideConfig]="{infinite: false}"
                  (hasData)="onImageLoaded($event)"

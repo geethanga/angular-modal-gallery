@@ -29,6 +29,7 @@ import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/delay';
+import { SelectionInfo } from '../../../../angular-modal-gallery/src/interfaces/buttons-config.interface';
 
 @Component({
   selector: 'app-root',
@@ -39,8 +40,12 @@ export class AppComponent {
 
   openModalWindow: boolean = false;
   imagePointer: number = 0;
-  selectedCount: number = 0;
-  totalCount: number = 3;
+  selectedCount: number = 5;
+  totalCount: number = 10;
+  selectionInfo: SelectionInfo = {
+    selectedCount: this.selectedCount,
+    total: this.totalCount
+  }
 
   openModalWindowObservable: boolean = false;
   imagePointerObservable: number = 0;
