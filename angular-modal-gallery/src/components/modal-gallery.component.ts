@@ -160,7 +160,7 @@ export class AngularModalGalleryComponent implements OnInit, OnDestroy, OnChange
    */
   @Input() modalImages: Observable<Array<Image>> | Array<Image>;
 
-  @Input() selectionLimit: number = 100;
+  @Input() selectionLimit: number;
 
   /**
    * Number to open the modal gallery (passing a value >=0) showing the image with the

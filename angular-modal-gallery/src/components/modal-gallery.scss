@@ -111,12 +111,6 @@
       right: 0;
     }
 
-    @media (max-width: 676px) {
-      &.info-text {
-        bottom: 100px;
-      }
-    }
-
     @media (min-width: 676px) and (max-width: 752px) {
       &.info-text {
         padding-top: 52px;
@@ -128,13 +122,6 @@
         padding-top: 43px;
       }
     }
-
-    @media (min-width: 804px) {
-      &.info-text {
-        bottom: 100px;
-      }
-    }
-
   }
 
   > .ng-thumbnails-wrapper {
