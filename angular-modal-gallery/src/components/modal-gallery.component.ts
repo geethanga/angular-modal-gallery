@@ -391,7 +391,7 @@ export class AngularModalGalleryComponent implements OnInit, OnDestroy, OnChange
     });
     var selectedImageCount = selectedImages.length;
     var tobeselected = this.selectionLimit - selectedImageCount;
-    this.canSelectImage = tobeselected <= 0;
+    this.canSelectImage = tobeselected <= 0 && !this.currentImage.selected;
     return "You need to select " + tobeselected + " images."
   }
   /**
