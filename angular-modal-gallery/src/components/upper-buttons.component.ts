@@ -42,6 +42,7 @@ export class UpperButtonsComponent {
   @Input() image: Image;
   @Input() configButtons: ButtonsConfig;
   @Input() selectionInfo: SelectionInfo;
+  @Input() canSelect: boolean;
 
   @Output() close: EventEmitter<boolean> = new EventEmitter<boolean>();
   @Output() download: EventEmitter<boolean> = new EventEmitter<boolean>();

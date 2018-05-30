@@ -10,6 +10,7 @@
     <input #selectImageCheckBox
     id="selectImageCheckBox" 
     type="checkbox" 
+    [disabled]="canSelect"
     [checked]="image.selected" 
     (change)="onSelectChanged(selectImageCheckBox.checked, image)" />
 </div>

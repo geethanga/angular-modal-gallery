@@ -10,7 +10,7 @@
         <div></div>
       </div>
 
-      <upperButtons [image]="currentImage" [configButtons]="configButtons" [selectionInfo]="selectionInfo"
+      <upperButtons [image]="currentImage" [configButtons]="configButtons" [selectionInfo]="selectionInfo" [canSelect]="canSelectImage"
                     (close)="closeGallery()" (download)="downloadImage()" (imageSelectionChanged)="imageSelectionChangedComponent($event)"></upperButtons>
 
       <span class="info-text">{{getImageCountsToDisplay()}}</span>

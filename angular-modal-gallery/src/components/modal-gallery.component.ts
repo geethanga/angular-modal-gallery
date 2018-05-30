@@ -262,6 +262,8 @@ export class AngularModalGalleryComponent implements OnInit, OnDestroy, OnChange
    */
   isLastImage: boolean = false;
 
+  canSelectImage: boolean = false;
+
 
   /**
    * Paging related variables
@@ -389,6 +391,7 @@ export class AngularModalGalleryComponent implements OnInit, OnDestroy, OnChange
     });
     var selectedImageCount = selectedImages.length;
     var tobeselected = this.selectionLimit - selectedImageCount;
+    this.canSelectImage = tobeselected <= 0;
     return "You need to select " + tobeselected + " images."
   }
   /**
