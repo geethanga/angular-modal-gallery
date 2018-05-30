@@ -1,6 +1,6 @@
 {
   "name": "angular-modal-gallery-hbs",
-  "version": "5.1.5",
+  "version": "5.1.6",
   "description": "Modal image gallery for Angular >=4",
   "main": "src/public_api.ts",
   "license": "MIT",
