@@ -6,5 +6,7 @@
       <img *ngIf="!i.thumb" src="{{ i.img }}" class="ng-thumb" (click)="showModalGallery(index)"
            alt="{{getAltDescriptionByIndex(index)}}"/>
     </ng-container>
+    <small *ngIf="i.selected" class="selected-img"><img src="assets/images/select.png"></small>
+    <span>{{i.fileName}}</span>
   </div>
 </div>

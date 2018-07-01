@@ -24,8 +24,6 @@
            (click)="nextImage(clickAction)"
            (swipeleft)="swipe(currentImageIndex, $event.type)"
            (swiperight)="swipe(currentImageIndex, $event.type)"/>
-           <small *ngIf="currentImage.selected" class="selected-img"><img src="assets/images/select.png"></small>
-           <span>{{currentImage.fileName}}</span>
       <a class="nav-right" *ngIf="images?.length > 1"
          [hidden]="isLastImage"
          (click)="nextImage()"><i class="fa fa-angle-right"></i>
